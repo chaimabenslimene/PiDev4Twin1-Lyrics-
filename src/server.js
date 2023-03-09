@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('./database/index');
+require('./startegies/facebook');
 
 const express = require('express');
 const session = require('express-session');
@@ -8,6 +9,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 
 const componentsRouter = require('./routes/components');
+const authFacebook = require('./routes/authFacebook');
 
 const app = express();
 
@@ -55,3 +57,4 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api', componentsRouter);
+app.use('/api/auth', authFacebook);
