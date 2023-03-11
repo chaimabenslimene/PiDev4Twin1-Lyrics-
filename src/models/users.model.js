@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
     },
     isVerified: {
       type: Boolean,
-      default: false,
+      default: () => this.isOauth === true,
     },
     token: {
       type: String,
@@ -27,9 +27,21 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: () => this.isOauth === false,
     },
+    role: {
+      type: Number,
+      enum: [0, 1, 2],
+      // 0 => simple user
+      // 1 => admin
+      // 2 => super admin
+      default: 0, // simple user
+    },
+
+    isAskingPromotion: {
+      type: Boolean,
+      default: false,
+    },
     isAdmin: {
       type: Boolean,
-      required: true,
       default: false,
     },
   },
