@@ -1,17 +1,28 @@
 require('dotenv').config();
 require('./database/index');
 require('./startegies/facebook');
+require('./startegies/local');
 
 const express = require('express');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
 const componentsRouter = require('./routes/components');
 const authFacebook = require('./routes/authFacebook');
 
 const app = express();
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 
 const PORT = process.env.PORT || 5000;
 
@@ -58,3 +69,5 @@ app.use(passport.session());
 
 app.use('/api', componentsRouter);
 app.use('/api/auth', authFacebook);
+app.use('/api/auth', loginRouter);
+app.use('/api/auth', logoutRouter);
