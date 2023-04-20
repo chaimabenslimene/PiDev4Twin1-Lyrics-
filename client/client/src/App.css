@@ -1,0 +1,29 @@
+
+/* Home */
+#home{
+    background: rgb(62, 106, 156);
+    background: linear-gradient(90deg, rgb(75, 152, 240) 50%, rgba(0, 212, 255, 1) 100%);
+    min-height: 500px;
+}
+
+/* Footer */
+.footer{
+    background: rgb(62, 106, 156);
+    background: linear-gradient(90deg, rgb(75, 152, 240) 40%, rgba(0, 212, 255, 1) 100%);
+}
+
+.text-gris {
+    color: rgb(24, 61, 136);
+  }
+
+  /* Form */
+.form{
+    background: rgb(62, 106, 156);
+    background: linear-gradient(90deg, rgb(75, 152, 240) 40%, rgba(0, 212, 255, 1) 100%);
+
+}
+
+
+
+
+ 
