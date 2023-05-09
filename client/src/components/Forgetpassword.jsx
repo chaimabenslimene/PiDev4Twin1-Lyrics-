@@ -3,6 +3,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer,toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
  function onChange(value)  {
     console.log("reCAPTCHA value:", value);
 //    Insérez votre code ici pour valider la réponse reCAPTCHA
@@ -11,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 
   const Forgetpassword = () => {
-    
+    const [captchaValue, setCaptchaValue] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
@@ -21,16 +24,51 @@ import { useNavigate } from 'react-router-dom';
          setMessage('Veuillez saisir votre adresse e-mail.');
          return;
        }
-  
+       if (captchaValue === '') {
+        toast.warn('Confirm that you are a human!', {
+          position: 'top-right',
+          autoClose: 3000, // 3 seconds
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      
+        return;
+      }
       try {
-        const response = await axios.post('http://localhost:5000/api/users/verify', { email });
-        console.log(response.data);
-        if (response.data.message === 'Email not found') {
-          setMessage(`L'adresse e-mail n'a pas été trouvée dans la base de données.`);
-        } else {
-          const token = response.data;
-          navigate(`/resetPassword/${token}`);
-        }
+      const response = await axios.post('http://localhost:5000/api/users/verify', { email });
+     console.log(response.data);
+     if (response.data.message === 'Email not found') {
+      setMessage(`L'adresse e-mail n'a pas été trouvée dans la base de données.`);
+      toast.warn('Mail does not exist', {
+        position: 'top-right',
+        autoClose: 3000, // 3 seconds
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    } else {
+      toast.success('A verification mail has been sent to you !', {
+        position: 'top-right',
+        autoClose: 3000, // 3 seconds
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+    }
+   //  window.alert('A verification mail has been sent to you ');
+
+/* if (response.data.message === 'Email not found') {
+  setMessage(`L'adresse e-mail n'a pas été trouvée dans la base de données.`);
+} else {
+ /// navigate(`/resetPassword/${response.data}`); // Rediriger l'utilisateur vers la page de réinitialisation de mot de passe
+} */
+          
+        
       } catch (error) {
         console.error(error);
       }
@@ -39,8 +77,13 @@ import { useNavigate } from 'react-router-dom';
     const handleEmailChange = (event) => {
       setEmail(event.target.value);
     };
+
+    const handleCaptchaChange = (value) => {
+      setCaptchaValue(value);
+    };
   return (
     <div>
+      <ToastContainer />
     {message && (
   <div className={`alert ${message.includes('envoyé') ? 'alert-success' : 'alert-danger'}`} role="alert">
     {message}
@@ -82,7 +125,8 @@ import { useNavigate } from 'react-router-dom';
         <div id="emailHelp" className="form-text">please enter email address </div>
         <ReCAPTCHA 
                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" 
-               onChange={onChange} />
+               onChange={handleCaptchaChange} /> 
+              
         <button type="submit"  className="btn btn-primary w-100 mt-4 rounded-pill" >Send Mail</button>
         </div>
       </form>

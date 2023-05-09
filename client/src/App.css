@@ -1,3 +1,4 @@
+
 /* Home */
 #home{
     background: rgb(62, 106, 156);
@@ -21,6 +22,12 @@
     background: linear-gradient(90deg, rgb(75, 152, 240) 40%, rgba(0, 212, 255, 1) 100%);
 
 }
+.App video {
+    width: 50%;
+    height: 50vh;
+  }
+
+
 
 
  

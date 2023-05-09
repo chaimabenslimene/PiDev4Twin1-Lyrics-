@@ -1,0 +1,98 @@
+.add-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .add-btn i {
+    margin-right: 5px;
+  }
+  
+  .add-btn:hover {
+    background-color: #3e8e41;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+  }
+  
+  .popup label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .popup input[type="text"],
+  .popup textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  .popup button[type="submit"] {
+    background-color: #189fd8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .popup button[type="submit"]:hover {
+    background-color: #189fd8;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ccc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    background-color: #999;
+  }
+
+  .delete-btn {
+ 
+   
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .delete-btn i {
+    margin-right: 0.5rem;
+  }
+  

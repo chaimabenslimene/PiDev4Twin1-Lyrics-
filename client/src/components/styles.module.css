@@ -8,6 +8,15 @@
     justify-content: center;
 }
 
+.username {
+    margin-right: 30px;
+    
+  }
+.title {
+    text-align: center;
+    margin-right: 100px;
+  }
+
 .heading::after {
     content: "";
     width: 450px;
@@ -35,6 +44,69 @@
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
 }
+.voyage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+  .voyage-item1 {
+    border: 1px solid rgb(15, 63, 196);
+    padding: 10px;
+    margin: 10px;
+    flex: 1;
+    margin-bottom: 10px;
+  }
+ 
+  .h-custom {
+    background-color: #d2c9ff;
+  }
+  
+  .voyage-item {
+    border: 1px solid rgb(103, 182, 238);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+
+  
+  .voyage-item div:first-child {
+    text-decoration: underline;
+  }
+  
+  .voyage-item button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    font-weight: bold;
+  }
+  
+  .voyage-item button:hover {
+    color: rgb(42, 84, 142);
+  }
+  
+  .text-danger {
+    color: #ff0000; /* Rouge */
+  }
+
+  .white-background {
+    background-color: white;
+    /* Ajoutez d'autres propriétés de style selon vos besoins */
+  }
+  
+  .voyage-item .fa-plus,
+  .voyage-item .fa-minus {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .white-bg {
+    background-color: white;
+  }
 
 .img {
     width: 160%;
@@ -137,5 +209,12 @@
     .profileContainer {
       flex-direction: column-reverse;
     }
+  }
+
+  .Sidebar{
+    height:100%;
+    width:200%;
+    background-color:blue;
+
   }
   

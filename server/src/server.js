@@ -1,7 +1,8 @@
 require('dotenv').config();
 require('./database/index');
-require('./startegies/facebook');
 require('./startegies/local');
+require('./startegies/google');
+require('./startegies/facebook');
 
 const express = require('express');
 const session = require('express-session');
@@ -9,13 +10,25 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-
+const panierRoutes = require('./routes/Cart');
 const loginRouter = require('./routes/login');
-const logoutRouter = require('./routes/logout');
 const componentsRouter = require('./routes/components');
+const logoutRouter = require('./routes/logout');
+const authGoogle = require('./routes/authGoggle');
 const authFacebook = require('./routes/authFacebook');
+const verifyJwt = require('./routes/verifyJwt');
+const trendRouter= require ('./routes/trend')
+
+
+
+
+var path = require('path');
+var logger = require('morgan');
+const paymentRouter = require("./routes/payment")
+
 
 const app = express();
+
 
 app.use(
   cors({
@@ -41,10 +54,13 @@ app.use(
 
     store: MongoStore.create({
       mongoUrl: 'mongodb://localhost/pi',
+      autoRemove: 'interval',
+      autoRemoveInterval: 15,
     }),
 
     cookie: {
       secure: false,
+      maxAge: 900000,
     },
   })
 );
@@ -67,35 +83,24 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api', componentsRouter);
-app.use('/api/auth', authFacebook);
+app.use(logger('dev'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/api/auth', loginRouter);
+app.use('/api', componentsRouter);
 app.use('/api/auth', logoutRouter);
+app.use('/api/auth', authGoogle);
+app.use('/api/auth', authFacebook);
+app.use('/', verifyJwt);
+app.use('/trends', trendRouter);
+app.use('/api/cart', panierRoutes);
 
 
-app.post("/checkout", async (req, res) => {
-   
-    console.log(req.body);
-    const items = req.body.items;
-    let lineItems = [];
-    items.forEach((item)=> {
-        lineItems.push(
-            {
-                price: item.id,
-                quantity: item.quantity
-            }
-        )
-    });
+app.use("/api", paymentRouter );
 
-    const session = await stripe.checkout.sessions.create({
-        line_items: lineItems,
-        mode: 'payment',
-        success_url: "http://localhost:3000/success",
-        cancel_url: "http://localhost:3000/cancel"
-    });
 
-    
-    res.send(JSON.stringify({
-        url: session.url
-    }));
-});
+
+
+ 
+
