@@ -1,0 +1,110 @@
+
+/* Home */
+#home{
+    background: rgb(62, 106, 156);
+    background: linear-gradient(90deg, rgb(75, 152, 240) 50%, rgba(0, 212, 255, 1) 100%);
+    min-height: 500px;
+}
+
+/* Footer */
+.footer{
+    background: rgb(62, 106, 156);
+    background: linear-gradient(90deg, rgb(75, 152, 240) 40%, rgba(0, 212, 255, 1) 100%);
+}
+
+.text-gris {
+    color: rgb(24, 61, 136);
+  }
+
+  /* Form */
+.form{
+    background: rgb(62, 106, 156);
+    background: linear-gradient(90deg, rgb(75, 152, 240) 40%, rgba(0, 212, 255, 1) 100%);
+
+
+}
+
+.ticket-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 20px;
+}
+
+.ticket-card img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  max-width: 100%;
+  height: 200px; /* set fixed height */
+  object-fit: cover; /* ensure image fills container */
+  object-position: center; /* center image within container */
+  width: 100%; /* set fixed width */
+}
+
+.btn-circle {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.cart-ticket {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+
+
+.cart-ticket .ticket-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cart-ticket .ticket-info h3 {
+  margin: 0;
+}
+
+.cart-ticket .quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.cart-ticket .quantity-controls .btn-circle {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.cart-ticket .quantity-controls p {
+  margin: 0 10px;
+}
+
+.cart-ticket .price {
+  margin: 5px 0 0 0;
+}
+
+.cart-ticket .remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+
+
+
+
+
+ 
